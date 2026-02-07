@@ -1,20 +1,21 @@
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
-	event = "InsertEnter",
+	build = ":Copilot auth",
+	event = "BufReadPost",
 	config = function()
 		require("copilot").setup({
 			suggestion = {
-				enabled = true, -- Enable inline suggestions
+				enabled = not vim.g.ai_cmd, -- Enable inline suggestions
 				auto_trigger = true, -- Automatically trigger suggestions
 				keymap = {
-					accept = "<Tab>", -- Accept suggestion
+					accept = false, -- Accept suggestion
 					next = "<M-]>", -- Move to next suggestion
 					prev = "<M-[>", -- Move to previous suggestion
 					dismiss = "<C-]>", -- Dismiss suggestion
 				},
 			},
-			panel = { enabled = true }, -- Disable panel if you don't want extra UI
+			panel = { enabled = false }, -- Disable panel if you don't want extra UI
 		})
 	end,
 }
